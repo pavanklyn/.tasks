@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Only Website</title>
+</head>
+<body bgcolor="#f5f5f5" text="black">
+
+    <!-- Header -->
+    <header>
+        <h1 align="center">Welcome to My HTML Only Website</h1>
+        <hr>
+    </header>
+
+    <!-- Navigation -->
+    <nav align="center">
+        <a href="#about">About</a> |
+        <a href="#table">Table</a> |
+        <a href="#form">Form</a> |
+        <a href="#media">Media</a> |
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <hr>
+
+    <!-- Section: About -->
+    <section id="about">
+        <h2>About This Website</h2>
+        <p>This is a basic website built using only <b>HTML</b> elements. No CSS or JavaScript is used.</p>
+        <p><i>Purpose:</i> To demonstrate all essential HTML tags in a single webpage.</p>
+    </section>
+
+    <!-- Section: List -->
+    <section>
+        <h2>HTML Topics Covered</h2>
+        <ol>
+            <li>Headings</li>
+            <li>Paragraphs</li>
+            <li>Links</li>
+            <li>Lists (Ordered, Unordered)</li>
+            <li>Tables</li>
+            <li>Forms</li>
+            <li>Multimedia (Image, Audio, Video)</li>
+            <li>Inline Elements (bold, italic, underline)</li>
+            <li>Comments</li>
+            <li>Entities and Symbols (&copy;, &euro;)</li>
+        </ol>
+    </section>
+
+    <!-- Section: Table -->
+    <section id="table">
+        <h2>Sample HTML Table</h2>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <caption>User Info</caption>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>City</th>
+            </tr>
+            <tr>
+                <td>Pavan</td>
+                <td>pavan@example.com</td>
+                <td>Vijayawada</td>
+            </tr>
+            <tr>
+                <td>Priya</td>
+                <td>priya@example.com</td>
+                <td>Hyderabad</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Section: Form -->
+    <section id="form">
+        <h2>Contact Form</h2>
+        <form method="post" action="#">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br><br>
+
+            <label for="gender">Gender:</label><br>
+            <input type="radio" id="male" name="gender" value="male"> Male
+            <input type="radio" id="female" name="gender" value="female"> Female<br><br>
+
+            <label for="skills">Skills:</label><br>
+            <input type="checkbox" name="skill" value="html"> HTML
+            <input type="checkbox" name="skill" value="css"> CSS
+            <input type="checkbox" name="skill" value="js"> JavaScript<br><br>
+
+            <label for="city">City:</label><br>
+            <select name="city" id="city">
+                <option value="vij">Vijayawada</option>
+                <option value="hyd">Hyderabad</option>
+                <option value="blr">Bangalore</option>
+            </select><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea name="message" id="message" rows="4" cols="40"></textarea><br><br>
+
+            <input type="submit" value="Send">
+            <input type="reset" value="Clear">
+        </form>
+    </section>
+
+    <!-- Section: Multimedia -->
+    <section id="media">
+        <h2>Media Section</h2>
+
+        <h3>Image</h3>
+        <img src="https://via.placeholder.com/150" alt="Sample Image" width="150" height="150"><br><br>
+
+        <h3>Audio</h3>
+        <audio controls>
+            <source src="sample.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio><br><br>
+
+        <h3>Video</h3>
+        <video width="320" height="240" controls>
+            <source src="sample.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+
+    <!-- Section: Footer -->
+    <footer id="contact">
+        <hr>
+        <p align="center">&copy; 2025 Pavan Kalyan | Contact: pavankalyn5555@gmail.com</p>
+    </footer>
+
+</body>
+</html>
