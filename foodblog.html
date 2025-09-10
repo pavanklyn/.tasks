@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Daily Spoon — Simple Food Blog</title>
+  <meta name="description" content="Daily Spoon — recipes, food stories, and kitchen tips." />
+
+  <style>
+    
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:#222}
+    a{color:inherit;text-decoration:none}
+
+
+    header{background:linear-gradient(90deg,#ffefba,#ffd1dc);padding:28px 20px}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:10px;background:#fff;display:grid;place-items:center;font-weight:700}
+    nav{margin-left:auto}
+    nav a{margin-left:18px;font-weight:600}
+
+    .hero{display:grid;grid-template-columns:1fr 350px;gap:28px;align-items:center;padding:28px 0}
+    .hero .lead{font-size:20px;line-height:1.5}
+    .hero h1{font-size:36px;margin-bottom:10px}
+    .hero .cta{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:10px;background:#222;color:#fff}
+
+    
+    main{display:grid;grid-template-columns:2fr 1fr;gap:26px;margin-top:18px}
+    .posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(20,20,20,0.06);overflow:hidden}
+    .card img{width:100%;height:170px;object-fit:cover;display:block}
+    .card .meta{padding:12px}
+    .card h3{font-size:18px;margin-bottom:8px}
+    .card p{font-size:13px;color:#555}
+
+    aside .widget{background:#fff;padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(20,20,20,0.06);margin-bottom:16px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{padding:6px 10px;border-radius:999px;font-size:13px;border:1px solid #eee}
+
+    footer{margin-top:36px;padding:30px 0;text-align:center;color:#666}
+
+    
+    .search{display:flex;gap:8px}
+    .search input{flex:1;padding:10px;border-radius:10px;border:1px solid #ddd}
+    .search button{padding:10px 12px;border-radius:10px;border:0;background:#ff6b6b;color:white}
+
+    
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      main{grid-template-columns:1fr}
+      .hero h1{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container" style="display:flex;align-items:center">
+      <div class="brand">
+        <div class="logo">DS</div>
+        <div>
+          <div style="font-weight:800;font-size:18px">Daily Spoon</div>
+          <div style="font-size:12px;color:#444">Simple recipes • Seasonal cooking • Real stories</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#">Home</a>
+        <a href="#recipes">Recipes</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="hero">
+      <div>
+        <h1>Fresh recipes for busy people</h1>
+        <p class="lead">Quick weeknight dinners, weekend baking, and seasonal salads — tested in a real home kitchen and written for cooks of all levels.</p>
+
+        <div style="margin-top:12px;display:flex;gap:12px;align-items:center">
+          <a class="cta" href="#recipes">See Recipes</a>
+          <div style="font-size:13px;color:#555">New: <strong>30-minute curry</strong></div>
+        </div>
+
+        <div style="margin-top:18px">
+          <form class="search" onsubmit="event.preventDefault(); searchPosts()">
+            <input id="searchInput" placeholder="Search recipes, e.g. 'pasta'" />
+            <button type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+
+      <aside>
+        <div class="widget">
+          <h4 style="margin-bottom:8px">Subscribe</h4>
+          <p style="font-size:13px;color:#555">Get new recipes and kitchen tips delivered weekly.</p>
+          <form onsubmit="event.preventDefault(); alert('Thanks — subscription demo')" style="margin-top:10px;display:flex;gap:8px">
+            <input placeholder="Your email" style="flex:1;padding:8px;border-radius:8px;border:1px solid #ddd" />
+            <button style="padding:8px 10px;border-radius:8px;border:0;background:#222;color:#fff">Join</button>
+          </form>
+        </div>
+
+        <div class="widget">
+          <h4>Popular tags</h4>
+          <div class="tags" id="tagList">
+            <span class="tag" onclick="filterByTag('Dinner')">Dinner</span>
+            <span class="tag" onclick="filterByTag('Vegan')">Vegan</span>
+            <span class="tag" onclick="filterByTag('Baking')">Baking</span>
+            <span class="tag" onclick="filterByTag('Quick')">Quick</span>
+            <span class="tag" onclick="filterByTag('Dessert')">Dessert</span>
+          </div>
+        </div>
+
+        <div class="widget">
+          <h4>About</h4>
+          <p style="font-size:13px;color:#555">Hi — I’m Priya. I test recipes for real kitchens and write simple instructions so busy people can cook with confidence.</p>
+        </div>
+      </aside>
+    </section>
+
+    <main>
+      <section>
+        <h2 id="recipes" style="margin-bottom:12px">Latest Recipes</h2>
+        <div class="posts" id="posts">
+
+          <!-- Recipe card 1 -->
+          <article class="card" data-tags="Dinner,Quick">
+            <img src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2f642?auto=format&fit=crop&w=800&q=60" alt="One-pan lemon chicken" />
+            <div class="meta">
+              <h3>One-Pan Lemon Chicken with Greens</h3>
+              <p>30 minutes • Easy • A bright weeknight chicken recipe with tender greens and lemony pan sauce.</p>
+            </div>
+          </article>
+
+          <!-- Recipe card 2 -->
+          <article class="card" data-tags="Vegan,Dinner">
+            <img src="https://images.unsplash.com/photo-1543353071-087092ec393f?auto=format&fit=crop&w=800&q=60" alt="Vegan Buddha bowl" />
+            <div class="meta">
+              <h3>Roasted Veggie Buddha Bowl</h3>
+              <p>Plant-based, filling, and full of texture — roasted carrots, chickpeas, quinoa and tahini drizzle.</p>
+            </div>
+          </article>
+
+          <!-- Recipe card 3 -->
+          <article class="card" data-tags="Baking,Dessert">
+            <img src="https://images.unsplash.com/photo-1542831371-d531d36971e6?auto=format&fit=crop&w=800&q=60" alt="Chocolate loaf" />
+            <div class="meta">
+              <h3>Simple Chocolate Loaf</h3>
+              <p>A forgiving, moist chocolate loaf with an easy buttercream glaze. Great for beginners.</p>
+            </div>
+          </article>
+
+          <!-- Recipe card 4 -->
+          <article class="card" data-tags="Quick,Dinner">
+            <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=60" alt="Pasta" />
+            <div class="meta">
+              <h3>15-Minute Garlic Tomato Pasta</h3>
+              <p>Pan-fried garlic and cherry tomatoes tossed with pasta for a bright, speedy dinner.</p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <aside>
+        <div class="widget">
+          <h4>About the author</h4>
+          <p style="font-size:13px;color:#555">Priya shares tested recipes and kitchen stories from her home. She loves baking and simple weeknight dinners.</p>
+        </div>
+
+        <div class="widget">
+          <h4>Recent posts</h4>
+          <ul style="margin-top:8px;list-style:none">
+            <li style="padding:8px 0;border-bottom:1px dashed #eee"><a href="#">Sourdough starter for beginners</a></li>
+            <li style="padding:8px 0;border-bottom:1px dashed #eee"><a href="#">How to make yogurt at home</a></li>
+            <li style="padding:8px 0"><a href="#">Meal prep: 5 lunches under 15 minutes</a></li>
+          </ul>
+        </div>
+
+        <div class="widget">
+          <h4>Contact</h4>
+          <p style="font-size:13px;color:#555">Want to collaborate or ask a question? <a href="#contact">Send a note</a>.</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>© <span id="year"></span> Daily Spoon — Made with love in the kitchen.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function searchPosts(){
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const cards = Array.from(document.querySelectorAll('.card'));
+      cards.forEach(c=>{
+        const text = (c.innerText || '').toLowerCase();
+        c.style.display = text.includes(q) ? 'block' : 'none';
+      });
+    }
+
+    function filterByTag(tag){
+      const cards = Array.from(document.querySelectorAll('.card'));
+      cards.forEach(c=>{
+        const tags = c.getAttribute('data-tags') || '';
+        c.style.display = tags.split(',').map(t=>t.trim()).includes(tag) ? 'block' : 'none';
+      });
+    }
+
+    // Reset filters on load
+    window.addEventListener('load', ()=>{
+      // nothing for now; placeholder
+    });
+  </script>
+</body>
+</html>
